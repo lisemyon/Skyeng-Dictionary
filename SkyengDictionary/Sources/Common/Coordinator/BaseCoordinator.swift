@@ -13,4 +13,12 @@ class BaseCoordinator: NSObject, Coordinator {
 	func start() {
 		fatalError("Children should implement `start`.")
 	}
+
+	func store(coordinator: Coordinator) {
+		childCoordinators.append(coordinator)
+	}
+
+	func free(coordinator: Coordinator) {
+		childCoordinators = childCoordinators.filter { $0 !== coordinator }
+	}
 }
